@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>계산기</h1>
+<!-- calc 라는 별칭을 쓸수 있는건 servlet 밖에 없다 -->
+<form action="calc" method="post">
+<input type="text" name="v1" style="width: 50px;">
+<select name="op">
+	<option value="+">+</option>
+	<option value="-">-</option>
+	<option value="*">*</option>
+	<option value="/">/</option>
+</select>
+<input type="text" name="v2" style="width: 50px;">
+<input type="submit" value="=">
+</form>
+</body>
+</html>
