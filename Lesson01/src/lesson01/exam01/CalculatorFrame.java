@@ -12,6 +12,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
 //AWT -> SWING API
 @SuppressWarnings("serial")//노란줄 안보이게		// 인터페이스 구현
 public class CalculatorFrame extends JFrame implements ActionListener{		//원래는 JFrame 인데 Actionlistener도 한다
@@ -107,6 +108,6 @@ public class CalculatorFrame extends JFrame implements ActionListener{		//원래는
 		clear.addActionListener(this);
 		return box;
 	}
-	
-	
 }
+
+
