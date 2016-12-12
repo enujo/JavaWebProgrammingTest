@@ -7,6 +7,7 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 
 public class HelloWorld implements Servlet {
 	ServletConfig config;
@@ -22,12 +23,26 @@ public class HelloWorld implements Servlet {
 		System.out.println("destroy() »£√‚µ ");
 	}
 	
+	public void doGet(){
+		System.out.println("doGet() »£√‚µ ");
+	}
+	public void doPost(){
+		System.out.println("doPost() »£√‚µ ");
+	}
 	@Override
 	public void service(ServletRequest request, ServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("service() »£√‚µ ");
+		if(((HttpServletRequest) request).getMethod().equals("GET")){
+			this.doGet();
+		}else{
+			this.doPost();
+		}
+		
 	}
 
+	
+	
 	@Override
 	public ServletConfig getServletConfig() {
 		System.out.println("getServletConfig() »£√‚µ ");
