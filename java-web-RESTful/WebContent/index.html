@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('button').on('click',function(){
+			$.getJSON('/java-web-RESTful/JSONController',function(data){
+				console.log(data.length);
+				/* 요청을 하는 메소드  */
+				$(data).each(function(index, item){ /* 세번돌리면서 */
+					$('div').append(item);		/* div안에 출력을 해라 */
+					$('div').append('<br>');
+				});
+			});
+		});
+	});
+</script>
+</head>
+<body>
+	<button>결과보기</button>
+	<div>	
+		
+	</div>
+
+</body>
+</html>
+
+<!-- 페이지를 유지한 상태에서 데이터를 게속 바꿀 수 있다. --> 
