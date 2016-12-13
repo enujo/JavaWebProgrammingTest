@@ -44,7 +44,8 @@ public class MemberListServlet extends GenericServlet {			//service안에다 코딩을
 			while(rs.next()) {
 				out.println(
 					rs.getInt("MNO") + "," +
-					rs.getString("MNAME") + "," +
+							"<a href='update?no=" + rs.getInt("MNO") + "'>" +
+					rs.getString("MNAME") + "</a>," +
 					rs.getString("EMAIL") + "," + 
 					rs.getDate("CRE_DATE") + "<br>"
 				);
