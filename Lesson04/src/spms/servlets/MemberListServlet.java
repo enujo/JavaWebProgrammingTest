@@ -40,7 +40,7 @@ public class MemberListServlet extends GenericServlet {			//service안에다 코딩을
 			PrintWriter out = response.getWriter();
 			out.println("<html><head><title>회원목록</title></head>");
 			out.println("<body><h1>회원목록</h1>");
-			out.println("<p><a href='add'>신규 회원</a></p>");
+			out.println("<p><a href='add'>신규 회원</a></p>");		//add앞에 아무것도 없기 때문에 같은 위치 이다. 
 			while(rs.next()) {
 				out.println(
 					rs.getInt("MNO") + "," +
