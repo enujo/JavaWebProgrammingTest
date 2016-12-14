@@ -4,7 +4,7 @@
 	language="java" 
 	contentType="text/html; charset=euc-kr"
     pageEncoding="UTF-8"%>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
 	"http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -14,8 +14,28 @@
 </head>
 <body>
 	<h1>회원목록</h1>
-	<p><a href='add'>신규 회원</a></p>
+	<jsp:useBean id="member"
+	  scope="session"
+	  class="tistory.luahius.spms.vo.Member"/>
+	<div style="background-color:#00008b;color:#ffffff;height:20px;padding: 5px;">
+	SPMS(Simple Project Management System)
+	<% if (member.getEmail() != null) { %>
+	<span style="float:right;">
+	<%=member.getName()%>
+	<a style="color:white;" 
+	  href="<%=request.getContextPath()%>/auth/logout">로그아웃</a>
+	</span>
+	<% } else{
+	%>
+		<a style="color:white;" 
+		href="<%=request.getContextPath() %>/auth/login">로그인</a>
 	<%
+	}
+	%>
+	</div>
+	
+	<p><a href='add'>신규 회원</a></p>
+<%-- 	<%
 		ArrayList<Member> members = (ArrayList<Member>)request.getAttribute(	"members");
 		for(Member member : members) {
 	%>
@@ -25,7 +45,7 @@
 			<%=member.getCreatedDate()%>
 			<a href='delete?no=<%=member.getNo()%>'>[삭제]</a><br>
 	<%} %>
-	<hr>
+	<hr> --%>
 	<table border="1">
 		<thead>
 			<tr>
