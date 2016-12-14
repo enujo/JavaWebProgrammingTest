@@ -4,6 +4,7 @@
 	language="java" 
 	contentType="text/html; charset=euc-kr"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
 	"http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -24,5 +25,28 @@
 			<%=member.getCreatedDate()%>
 			<a href='delete?no=<%=member.getNo()%>'>[삭제]</a><br>
 	<%} %>
+	<hr>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>순번</th>
+				<th>이름</th>
+				<th>메일</th>
+				<th>가입날짜</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach var="m" items="${ members}">
+				<tr>
+					<td align="center">${m.no }</td>
+					<td><a href="update?no=${m.no }">${m.name }</a></td>
+					<td>${m.email}</td>
+					<td>${m.createdDate }</td>
+					<td><a href="dete?no=${m.no }">[삭제]</a></td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
 </body>
 </html>
