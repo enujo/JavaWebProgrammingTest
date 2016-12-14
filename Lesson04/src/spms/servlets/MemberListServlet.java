@@ -20,6 +20,9 @@ public class MemberListServlet extends GenericServlet {			//service안에다 코딩을
 	@Override
 	public void service(ServletRequest request, ServletResponse response)
 			throws ServletException, IOException {
+		
+		System.out.println(">>>>>>> ListServlet <<<<<<<");
+		
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
