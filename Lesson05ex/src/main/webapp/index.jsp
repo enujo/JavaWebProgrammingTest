@@ -1,16 +1,17 @@
 <%@ page 
 	language="java" 
-	contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <html>
 <body>
 	<%@ include file="/Header.jsp" %>
 	<form>
 		<ul>
-			<del title="ì§€ìš´ì²™ì´ì–Œ" ><b>ì§€ìš´ì²™!</b></del>
-			<ins>ë°‘ì¤„!</ins>
+			<del title="Áö¿îÃ´ÀÌ¾ä" ><b>Áö¿îÃ´!</b></del>
+			<ins>¹ØÁÙ!</ins>
 			<li>
-				<a title="memberListë¡œ ì´ë™." href="<%=request.getContextPath() %>/member/list">list</a>
+				<a title="memberList·Î ÀÌµ¿." href="<%=request.getContextPath() %>/member/list">list</a>
+				<a title="memberList·Î ÀÌµ¿." href="<%=request.getContextPath() %>/member/add">add</a>
 			</li>
 			<li></li>
 			<li></li>			

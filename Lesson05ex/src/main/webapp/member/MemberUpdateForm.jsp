@@ -1,7 +1,7 @@
 <%@ page 
 	language="java" 
-	contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <jsp:useBean id="member"
 	scope="request"
 	class="spms.vo.Member"/>
@@ -9,20 +9,20 @@
 	"http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>íšŒì›ì •ë³´</title>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>È¸¿øÁ¤º¸</title>
 </head>
 <body>
-<h1>íšŒì›ì •ë³´</h1>
+<h1>È¸¿øÁ¤º¸</h1>
 <form action='update' method='post'>
-ë²ˆí˜¸: <input type='text' name='no' value='<%=member.getNo()%>' readonly><br>
-ì´ë¦„: <input type='text' name='name' value='<%=member.getName()%>'><br>
-ì´ë©”ì¼: <input type='text' name='email' value='<%=member.getEmail()%>'><br>
-ê°€ìž…ì¼: <%=member.getCreatedDate()%><br>
-<input type='submit' value='ì €ìž¥'>
-<input type='button' value='ì‚­ì œ' 
+¹øÈ£: <input type='text' name='no' value='<%=member.getNo()%>' readonly><br>
+ÀÌ¸§: <input type='text' name='name' value='<%=member.getName()%>'><br>
+ÀÌ¸ÞÀÏ: <input type='text' name='email' value='<%=member.getEmail()%>'><br>
+°¡ÀÔÀÏ: <%=member.getCreatedDate()%><br>
+<input type='submit' value='ÀúÀå'>
+<input type='button' value='»èÁ¦' 
 	onclick='location.href="delete?no=<%=member.getNo()%>";'>
-<input type='button' value='ì·¨ì†Œ' onclick='location.href="list"'>
+<input type='button' value='Ãë¼Ò' onclick='location.href="list"'>
 </form>
 </body>
 </html>

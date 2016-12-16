@@ -2,19 +2,19 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page 
 	language="java" 
-	contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
 	"http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>íšŒì› ëª©ë¡</title>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>È¸¿ø ¸ñ·Ï</title>
 </head>
 <body>
 <jsp:include page="/Header.jsp"/>
-<h1>íšŒì›ëª©ë¡</h1>
-<p><a href='add'>ì‹ ê·œ íšŒì›</a></p>
+<h1>È¸¿ø¸ñ·Ï</h1>
+<p><a href='add'>½Å±Ô È¸¿ø</a></p>
 <jsp:useBean id="members"
   scope="request"
   class="java.util.ArrayList" 
@@ -26,7 +26,7 @@ for(Member member : members) {
 <a href='update?no=<%=member.getNo()%>'><%=member.getName()%></a>,
 <%=member.getEmail()%>,
 <%=member.getCreatedDate()%>
-<a href='delete?no=<%=member.getNo()%>'>[ì‚­ì œ]</a><br>
+<a href='delete?no=<%=member.getNo()%>'>[»èÁ¦]</a><br>
 <%} %>
 <jsp:include page="/Tail.jsp"/>
 </body>

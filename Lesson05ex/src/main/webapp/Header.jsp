@@ -1,6 +1,8 @@
 <%@page import="spms.vo.Member"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page 
+	language="java" 
+	contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <jsp:useBean id="member"
   scope="session"
   class="spms.vo.Member"/>
@@ -10,7 +12,7 @@ SPMS(Simple Project Management System)
 <span style="float:right;">
 <%=member.getName()%>
 <a style="color:white;" 
-  href="<%=request.getContextPath()%>/auth/logout">로그아웃</a>
+  href="<%=request.getContextPath()%>/auth/logout">�α׾ƿ�</a>
 </span>
 <% } %>
 </div>
