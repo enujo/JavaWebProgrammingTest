@@ -2,7 +2,6 @@ package spms.servlets;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Statement;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -11,6 +10,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.jasper.tagplugins.jstl.core.Out;
+
+import spms.dao.MemberDao;
 
 // 오류 처리 JSP 적용  
 @WebServlet("/member/delete")
@@ -22,17 +25,24 @@ public class MemberDeleteServlet extends HttpServlet {
 			HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Connection conn = null;
-		Statement stmt = null;
+		int result = 0;
 
 		try {
 			ServletContext sc = this.getServletContext();
-			conn = (Connection) sc.getAttribute("conn");   
-			stmt = conn.createStatement();
-			stmt.executeUpdate(
-					"DELETE FROM MEMBERS WHERE MNO=" + 
-					request.getParameter("no"));
+			conn = (Connection) sc.getAttribute("conn");
 			
-			response.sendRedirect("list");
+			MemberDao memberDao = new MemberDao();
+			memberDao.setConnection(conn);
+			
+			result = memberDao.delete(Integer.parseInt(request.getParameter("no")));
+			
+			if(result !=0){
+				System.out.println("Delete 성공 !");
+				response.sendRedirect("list");
+			}else{
+				System.out.println("Delete 실패 !");
+				RequestDispatcher rd = request.getRequestDispatcher("/Error.jsp");
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -40,10 +50,6 @@ public class MemberDeleteServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/Error.jsp");
 			rd.forward(request, response);
 			
-		} finally {
-			try {if (stmt != null) stmt.close();} catch(Exception e) {}
-			//try {if (conn != null) conn.close();} catch(Exception e) {}
 		}
-
 	}
 }

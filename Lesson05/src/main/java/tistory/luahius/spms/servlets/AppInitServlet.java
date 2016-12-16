@@ -41,6 +41,6 @@ public class AppInitServlet extends HttpServlet {
 				conn.close();
 			}
 		} catch (Exception e) {}
-		
 	}
 }
+

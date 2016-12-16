@@ -28,6 +28,8 @@ public class MemberListServlet extends HttpServlet {
 		try {
 			ServletContext sc = this.getServletContext(); 
 			Connection servletConnection = (Connection) sc.getAttribute("conn"); 
+			System.out.println("MemberListServlet.java servletConnection : "+servletConnection);
+			
 			MemberDao memberDao = new MemberDao();//memberDao.connection == null;
 			memberDao.setConnection(servletConnection);
 			response.setContentType("text/html; charset=UTF-8");	//memberDao.connection == servletConnection;
@@ -41,16 +43,12 @@ public class MemberListServlet extends HttpServlet {
 					"/member/MemberList.jsp");
 			rd.include(request, response);
 			
-		
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("error", e);
 			RequestDispatcher rd = request.getRequestDispatcher("/Error.jsp");
 			rd.forward(request, response);
 			
-		} finally {
-			
 		}
-
 	}
 }
