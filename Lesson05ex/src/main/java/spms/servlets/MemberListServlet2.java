@@ -1,6 +1,7 @@
 package spms.servlets;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -15,8 +16,8 @@ import spms.dao.MemberDao;
 import spms.vo.Member;
 
 // ServletContext에 보관된 Connection 객체 사용  
-@WebServlet("/member/list")
-public class MemberListServlet extends HttpServlet {
+@WebServlet("/member/list2")
+public class MemberListServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -26,8 +27,11 @@ public class MemberListServlet extends HttpServlet {
 
 		try {
 			ServletContext sc = this.getServletContext(); 
+			Connection servletConnection = (Connection) sc.getAttribute("conn"); 
+			System.out.println("MemberListServlet.java servletConnection : "+servletConnection);
 			
-			MemberDao memberDao = (MemberDao)sc.getAttribute("memberDao");
+			MemberDao memberDao = new MemberDao();//memberDao.connection == null;
+			memberDao.setConnection(servletConnection);
 			response.setContentType("text/html; charset=UTF-8");	//memberDao.connection == servletConnection;
 			List<Member> members = memberDao.selectList();
 			
