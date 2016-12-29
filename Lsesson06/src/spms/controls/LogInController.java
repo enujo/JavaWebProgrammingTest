@@ -7,25 +7,29 @@ import javax.servlet.http.HttpSession;
 import spms.dao.MemberDao;
 import spms.vo.Member;
 
+// 의존 객체 주입을 위해 인스턴스 변수와 셋터 메서드 추가
+//- 또한 의존 객체를 꺼내는 기존 코드 변경
 public class LogInController implements Controller {
+  MemberDao memberDao;
+  
+  public LogInController setMemberDao(MemberDao memberDao) {
+    this.memberDao = memberDao;
+    return this;
+  }
+  
   @Override
   public String execute(Map<String, Object> model) throws Exception {
     if (model.get("loginInfo") == null) { // 입력폼을 요청할 때
-    	System.out.println(" >>> LogInCont <<< loginInfo == null ");
       return "/auth/LogInForm.jsp";
       
     } else { // 회원 등록을 요청할 때
-    	System.out.println(" >>> LogInCont <<< loginInfo != null ");
-      MemberDao memberDao = (MemberDao)model.get("memberDao"); 
       Member loginInfo = (Member)model.get("loginInfo");
-      System.out.println("뿌에에에에엥"+loginInfo);
       
       Member member = memberDao.exist(
           loginInfo.getEmail(), 
           loginInfo.getPassword());
       
       if (member != null) {
-    	  System.out.println(" >>> LogInCont <<< member != null ");
         HttpSession session = (HttpSession)model.get("session");
         session.setAttribute("member", member);
         return "redirect:../member/list.do";
