@@ -1,7 +1,5 @@
 package spms.bind;
 
-public interface DataBinding {
+public interface DataBinding2 {
 	Object[] getDataBinders();
 }
-
-

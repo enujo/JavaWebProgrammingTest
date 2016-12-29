@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import spms.bind.DataBinding;
 import spms.bind.ServletRequestDataBinder;
 import spms.controls.Controller;
-import spms.vo.Member;
 
 // ServletContext에 보관된 페이지 컨트롤러를 사용
 @SuppressWarnings("serial")
@@ -49,7 +48,7 @@ public class DispatcherServlet extends HttpServlet {
     		   * dataObject = 메소드호출();
     		   * request에 넘기는 매개변수 이름이 Member에 선언되어 있는 이름과 같아야한다
     		   * */
-    		  dataObject = ServletRequestDataBinder.bind(request, dataType);
+    		  dataObject = ServletRequestDataBinder.bind(request, dataType, dataName);
     		  // name을 dataTpye의 메소드를 호출   dataType.setName(name값); 호출하려면 이름이 같아야한다 !!!! 이래서 통일성이 있어야 된다 
     		  model.put(dataName, dataObject);
     	  }
