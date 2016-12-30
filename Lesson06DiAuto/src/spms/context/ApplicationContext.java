@@ -4,9 +4,15 @@ import java.io.FileReader;
 import java.lang.reflect.Method;
 import java.util.Hashtable;
 import java.util.Properties;
+import java.util.Set;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
+
+import org.reflections.Reflections;
+
+import spms.annotation.Component;
+
 
 //프로퍼티 파일을 이용한 객체 준비
 public class ApplicationContext {
@@ -25,8 +31,28 @@ public class ApplicationContext {
 		props.load(new FileReader(propertiesPath));
 		// 1. properties -> Hashtable로 이동하는 것을 분리 시켜 놓음
 		prepareObjects(props);
+	
+		//@ search -> Hashtable
+		injectDependency();
+		
+		
 		// 2. 열개 끼리 의존 성을 가진다. 그래서 setter를 가지고 의존성을 주입
 		injectDependency();
+	}
+	@SuppressWarnings("unused")
+	private void prepareAnnotationObjects() throws InstantiationException, IllegalAccessException{
+		//1. @Component search 힘드니까 외부 API를 이용 524p 모든 패키지를 검사 
+		Reflections reflector = new Reflections("");	//전부 검색 ("spms")하면 spms하위만 검색
+		Set<Class<?>> list = reflector.getTypesAnnotatedWith(Component.class);
+						//ㄴ 타입이 Component.class로 시작하는 것들 set은 중복 될수 없는 배열임으로
+		//2. value ->key, 객체->value
+		String key = null;
+		for(Class<?> clazz : list){
+			key = clazz.getAnnotation(Component.class).value();
+						//ㄴ 가지고 있는 에노테이션 중에 Component를 찾아 value값을 불러올것이다 그걸 key로 쓴다
+			Object obj = clazz.newInstance();
+			objTable.put(key, clazz.newInstance());
+		}
 	}
 
 	private void prepareObjects(Properties props) throws Exception {
